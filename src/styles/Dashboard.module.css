@@ -1,0 +1,113 @@
+.dashboardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    align-items: flex-start;
+    height: 100vh;
+  
+    background-image: url("/images/dashboardbg.svg");
+    background-size: 60% auto;
+    background-repeat: no-repeat;
+    background-position: right 50%;
+  }
+  
+  .dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    align-items: flex-start;
+    align-content: center;
+  
+    height: 90vh;
+    width: 40vw;
+    max-width: 725px;
+    min-width: 500px;
+  
+    margin-left: 5vh;
+    padding: 5vh 15vh 5vh 8vh;
+    border-radius: var(--border-radius);
+  
+    background-color: var(--card-colour);
+  }
+  
+  .welcomeMessage {
+    margin-bottom: 11vh;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  
+    gap: 0.3vh;
+  
+    width: 100%;
+    margin-bottom: 2vh;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 1.2em;
+    border: none;
+    border-radius: 0.9em;
+    background-color: #000;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+  
+    font-weight: 530;
+  
+    margin-top: 3.8vh;
+    margin-bottom: 0.5em;
+  }
+  
+  .submitButton:hover {
+    background-color: #333;
+  }
+  
+  .newProjectButton {
+    width: 100%;
+    padding: 1.2em;
+    border: none;
+    border-radius: 0.9em;
+    background-color: #000;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+  
+    font-weight: 530;
+  
+    margin-top: 1.5vh;
+  }
+  
+  .newProjectButton:hover {
+    background-color: #333;
+  }
+  
+  .inputLabel {
+    font-weight: 530;
+    margin-bottom: 0.2em;
+  }
+  
+  .inputBox {
+    width: 100%;
+    padding: 1em 1.2em;
+    border: 1px solid #d8d8d8;
+    border-radius: 0.5625em;
+    font-size: 1em;
+  }
+  
+  .resourceForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5vh;
+  }
+  
