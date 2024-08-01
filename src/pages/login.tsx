@@ -11,7 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Favicon />
       </Head>
-      <body className={styles.loginBody}>
+      <div className={styles.loginBody}>
         <div className={styles.loginContainer}>
           <div className={styles.logoWrapper}>
             <img
@@ -65,7 +65,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 }
