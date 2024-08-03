@@ -1,0 +1,35 @@
+.firstCell {
+  padding: 0;
+}
+
+.lastCell {
+  padding-right: 0;
+}
+
+.tableWrapper {
+  flex-grow: 1;
+  border: 1px solid orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.SMTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.paginationButton {
+  border: 1px solid var(--primary-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100%;
+}
