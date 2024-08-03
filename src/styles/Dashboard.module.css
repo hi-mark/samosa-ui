@@ -1,0 +1,132 @@
+.dashboardBody {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+.dashboardContainer {
+  display: flex;
+  direction: row;
+
+  border: 1px solid red;
+  gap: 0.875em;
+  width: 80%;
+  min-width: 900px;
+}
+
+.teamColumn {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 35%;
+  gap: 1em;
+}
+.projectColumn {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1em;
+}
+.inforgraphicsWrapper {
+  display: flex;
+  gap: 1em;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  /* border: 1px solid green; */
+}
+
+.teamCard,
+.projectsCard,
+.inviteCard,
+.projectUtilisationCard,
+.totalUtilisationCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-colour);
+  border-radius: var(--border-radius);
+  padding: 1.2em 1em;
+  flex-grow: 1;
+}
+.teamCard {
+  padding: 1.2em 1em;
+  width: 100%;
+}
+
+/* .projectsCard {
+} */
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cardHeading {
+  font-size: var(--card-heading);
+  font-weight: 530;
+  margin-bottom: 0.25em;
+}
+
+.paginationButton {
+  border: 1px solid var(--primary-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.nameTab {
+  text-align: left;
+}
+
+.firstCell {
+  padding: 0;
+}
+
+.lastCell {
+  padding-right: 0;
+}
+
+.utilGraphWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.setWrapper {
+  /* border: 1px solid aqua; */
+  flex-grow: 1;
+}
+
+.barWrapper {
+  display: flex;
+  direction: row;
+  height: 65px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 0.1em;
+  flex-grow: 1;
+}
+
+.indicatorBar {
+  background-color: var(--primary-grey);
+  min-width: 0.5px;
+  height: 100%;
+}
+.set1bar {
+  background-color: var(--primary-green);
+  border-radius: 0.75em;
+  height: 2.375em;
+  flex-grow: 1;
+}
+.set2bar {
+  background-color: var(--primary-orange);
+  border-radius: 0.75em;
+  height: 2.375em;
+  flex-grow: 1;
+}

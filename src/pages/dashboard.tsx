@@ -17,39 +17,34 @@ const mockDashboardData = {
   totalHW2Utilisation: 234,
   projects: [
     {
-      id: "p1",
+      pid: "p1",
       name: "Project 1",
       hwset1: 10,
       hwset2: 5,
-      dateCreated: "2022-01-01",
     },
     {
-      id: "p2",
+      pid: "p2",
       name: "Project 2",
       hwset1: 8,
       hwset2: 3,
-      dateCreated: "2022-02-15",
     },
     {
-      id: "p3",
+      pid: "p3",
       name: "Project 3",
       hwset1: 12,
       hwset2: 7,
-      dateCreated: "2022-03-10",
     },
     {
-      id: "p4",
+      pid: "p4",
       name: "Project 4",
       hwset1: 6,
       hwset2: 2,
-      dateCreated: "2022-04-20",
     },
     {
-      id: "p5",
+      pid: "p5",
       name: "Project 5",
       hwset1: 15,
       hwset2: 9,
-      dateCreated: "2022-05-05",
     },
   ],
 };
@@ -83,68 +78,116 @@ export default function Home() {
         <Favicon />
       </Head>
       <div className={styles.dashboardBody}>
-        <div className={styles.dashobardContainer}>
-          <div className={styles.teamCard}>
-            <p className={styles.cardHeading}>Team Members</p>
-            <table className={styles.teamTable}>
-              <thead>
-                <tr>
-                  <th>Serial</th>
-                  <th>Name</th>
-                  <th>Role</th>
-                </tr>
-              </thead>
-              <tbody>
-                {paginatedData.map((member, index) => (
-                  <tr key={member.id}>
-                    <td>{startIndex + index + 1}</td>
-                    <td>{member.name}</td>
-                    <td>{member.role}</td>
+        <div className={styles.dashboardContainer}>
+          <div className={styles.teamColumn}>
+            <div className={styles.teamCard}>
+              <p className={styles.cardHeading}>Team Members</p>
+              <table className={styles.teamTable}>
+                <thead>
+                  <tr>
+                    <th>Serial</th>
+                    <th className={styles.nameTab}>Name</th>
+                    <th>Role</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {paginatedData.map((member, index) => (
+                    <tr key={member.id}>
+                      <td>{startIndex + index + 1}</td>
+                      <td className={styles.nameTab}>{member.name}</td>
+                      <td>{member.role}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
 
-            <div className={styles.pagination}>
-              <button onClick={handleClickPrev} disabled={currentPage === 1}>
-                Prev
-              </button>
-              <p>
-                {currentPage} / {totalPages}
-              </p>
-              <button
-                onClick={handleClickNext}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
+              <div className={styles.pagination}>
+                <button
+                  className={styles.paginationButton}
+                  onClick={handleClickPrev}
+                  disabled={currentPage === 1}
+                >
+                  Prev
+                </button>
+                <p>
+                  {currentPage} / {totalPages}
+                </p>
+                <button
+                  className={styles.paginationButton}
+                  onClick={handleClickNext}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
             </div>
+            <div className={styles.inviteCard}>Hello</div>
           </div>
-
-          <div className={styles.projectsCard}>
-            <p className={styles.cardHeading}>Projects</p>
-            <table className={styles.projectsTable}>
-              <thead>
-                <tr>
-                  <th>Serial</th>
-                  <th>Project Name</th>
-                  <th>HW Set 1</th>
-                  <th>HW Set 2</th>
-                  <th>Date Created</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mockDashboardData.projects.map((project, index) => (
-                  <tr key={project.id}>
-                    <td>{index + 1}</td>
-                    <td>{project.name}</td>
-                    <td>{project.hwset1}</td>
-                    <td>{project.hwset2}</td>
-                    <td>{project.dateCreated}</td>
+          <div className={styles.projectColumn}>
+            <div className={styles.projectsCard}>
+              <p className={styles.cardHeading}>Projects</p>
+              <table className={styles.projectsTable}>
+                <thead>
+                  <tr>
+                    <th className={styles.firstCell}>Serial</th>
+                    <th>Project Name</th>
+                    <th>P Id</th>
+                    <th>HW Set 1</th>
+                    <th>HW Set 2</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {mockDashboardData.projects.map((project, index) => (
+                    <tr key={project.pid}>
+                      <td className={styles.firstCell}>{index + 1}</td>
+                      <td>{project.name}</td>
+                      <td>{project.pid}</td>
+                      <td>{project.hwset1}</td>
+                      <td>{project.hwset2}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className={styles.inforgraphicsWrapper}>
+              <div className={styles.projectUtilisationCard}>
+                <p className={styles.cardHeading}>Projects Utilisation</p>
+              </div>
+              <div className={styles.totalUtilisationCard}>
+                <p className={styles.cardHeading}>Total Utilisation</p>
+                <div className={styles.utilGraphWrapper}>
+                  <div
+                    className={styles.setWrapper}
+                    style={{
+                      width: `${
+                        (mockDashboardData.totalHW1Utilisation /
+                          (mockDashboardData.totalHW1Utilisation +
+                            mockDashboardData.totalHW2Utilisation)) *
+                        100
+                      }%`,
+                      minWidth: "15%",
+                      maxWidth: "85%",
+                    }}
+                  >
+                    <p>HW Set 1</p>
+                    <p>{mockDashboardData.totalHW1Utilisation}</p>
+                    <div className={styles.barWrapper}>
+                      <div className={styles.indicatorBar} />
+                      <div className={styles.set1bar} />
+                    </div>
+                  </div>
+
+                  <div className={styles.setWrapper}>
+                    <p>HW Set 2</p>
+                    <p>{mockDashboardData.totalHW2Utilisation}</p>
+                    <div className={styles.barWrapper}>
+                      <div className={styles.indicatorBar} />
+                      <div className={styles.set2bar} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
