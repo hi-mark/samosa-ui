@@ -102,9 +102,14 @@ export default function Home() {
     <div className={styles.projectsBody}>
       <div className={styles.projectsWrapper}>
         <div className={styles.projectsHeader}>
-          <p className={styles.cardHeading}>Projects</p>
+          <p className={styles.pageHeading}>Your Projects</p>
           <button className={styles.addProjectButton}>
             Create New Project
+            <img
+              className={styles.addIcon}
+              src="/icons/AddIcon.svg"
+              alt="Add"
+            />
           </button>
         </div>
         <div className={styles.projectsCard}>

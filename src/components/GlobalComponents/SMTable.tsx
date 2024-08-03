@@ -114,7 +114,11 @@ export const SMTable = (SMProps: SMProps) => {
             onClick={handleClickPrev}
             disabled={currentPage === 1}
           >
-            Prev
+            <img
+              src="/icons/LeftArrow.svg"
+              className={styles.paginationIcon}
+              alt="Next"
+            />
           </button>
           <p>
             {currentPage} / {totalPages}
@@ -124,7 +128,11 @@ export const SMTable = (SMProps: SMProps) => {
             onClick={handleClickNext}
             disabled={currentPage === totalPages}
           >
-            Next
+            <img
+              src="/icons/RightArrow.svg"
+              className={styles.paginationIcon}
+              alt="Next"
+            />
           </button>
         </div>
       )}

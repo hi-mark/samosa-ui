@@ -8,10 +8,24 @@
   width: 100%;
 }
 
-.cardHeading {
-  font-size: var(--card-heading);
+.pageHeading {
+  font-size: 2.2em;
   font-weight: 530;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.2em;
+}
+
+.addProjectButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7em 2em;
+  background-color: var(--primary-black);
+  color: #fff;
+  font-size: 1em;
+  border-radius: 3rem;
+  cursor: pointer;
+  gap: 1em;
+  border: none;
 }
 
 .projectsWrapper {
@@ -41,4 +55,12 @@
   align-items: center;
   margin-bottom: 1em;
   padding: 0 1em;
+}
+
+.addIcon {
+  height: 0.85em;
+}
+
+.addProjectButton:hover {
+  background-color: var(--secondary-black);
 }
