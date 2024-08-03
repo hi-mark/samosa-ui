@@ -13,6 +13,9 @@
   --primary-grey: #e2e2e2;
   --card-colour: #ffffff;
   --error-red: #cc3e19;
+
+  /* font sizes */
+  --card-heading: 1.453em;
 }
 
 * {
@@ -52,4 +55,21 @@ h2 {
   font-size: 2.2em;
   font-weight: 530;
   margin-bottom: 0.25em;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th {
+  font-size: 1.043em;
+  font-weight: 450;
+  color: var(--secondary-black);
+}
+
+td {
+  text-align: center;
+  font-size: 1.083em;
 }
