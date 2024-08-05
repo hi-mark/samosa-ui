@@ -2,6 +2,8 @@ import { SMTable } from "home/components/GlobalComponents/SMTable";
 import styles from "home/styles/Projects.module.css";
 import { useState } from "react";
 import { GetServerSideProps } from "next";
+import Favicon from "home/components/GlobalComponents/Favicon";
+import Head from "next/head";
 
 const projectsHeader = [
   { title: "Project Name", key: "name", leftAlign: true },
@@ -134,32 +136,43 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default function Home({ data, error }: PageProps) {
   console.log(data, error);
   return (
-    <div className={styles.projectsBody}>
-      <div className={styles.projectsWrapper}>
-        <div className={styles.projectsHeader}>
-          <p className={styles.pageHeading}>Your Projects</p>
-          <button className={styles.addProjectButton}>
-            Create New Project
-            <img
-              className={styles.addIcon}
-              src="/icons/AddIcon.svg"
-              alt="Add"
+    <>
+      <Head>
+        <title>Projects</title>
+        <meta
+          name="description"
+          content="View all the projects you are part of."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Favicon />
+      </Head>
+      <div className={styles.projectsBody}>
+        <div className={styles.projectsWrapper}>
+          <div className={styles.projectsHeader}>
+            <p className={styles.pageHeading}>Your Projects</p>
+            <button className={styles.addProjectButton}>
+              Create New Project
+              <img
+                className={styles.addIcon}
+                src="/icons/AddIcon.svg"
+                alt="Add"
+              />
+            </button>
+          </div>
+          <div className={styles.projectsCard}>
+            <SMTable
+              headerData={projectsHeader}
+              tableData={mockProjects}
+              showPagination
+              tableName="AllProjects"
+              rowsPerPage={6}
+              clickableRow
+              linkPrefix="/projects/"
+              linkKey="pid"
             />
-          </button>
-        </div>
-        <div className={styles.projectsCard}>
-          <SMTable
-            headerData={projectsHeader}
-            tableData={mockProjects}
-            showPagination
-            tableName="AllProjects"
-            rowsPerPage={6}
-            clickableRow
-            linkPrefix="/projects/"
-            linkKey="pid"
-          />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

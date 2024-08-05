@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "home/styles/SMTable.module.css";
+import styles from "home/styles/GlobalComponents/SMTable.module.css";
 import { useRouter } from "next/router";
 
 type header = {
