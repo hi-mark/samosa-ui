@@ -8,10 +8,41 @@
   width: 100%;
 }
 
-.cardHeading {
-  font-size: var(--card-heading);
+.pageHeading {
+  font-size: 2.2em;
   font-weight: 530;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.2em;
+}
+
+.addProjectButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7em 2em;
+  background-color: var(--primary-black);
+  color: #fff;
+  font-size: 1em;
+  border-radius: 3rem;
+  cursor: pointer;
+  gap: 1em;
+  border: none;
+}
+
+.deleteProjectButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7em 2em;
+  background-color: #f9eeea;
+  color: #cc3e19;
+  outline: 1px solid #cc3e19;
+  font-size: 1em;
+  border-radius: 3rem;
+  cursor: pointer;
+  gap: 1em;
+  border: none;
+
+  transition: all 0.1s;
 }
 
 .projectsWrapper {
@@ -20,7 +51,18 @@
   align-content: space-between;
   justify-content: space-between;
   width: 80vw;
-  height: 50vh;
+  height: 56vh;
+}
+
+.utilisationWrapper {
+  flex-grow: 1;
+  display: flex;
+}
+
+.cardHeading {
+  font-size: var(--card-heading);
+  font-weight: 530;
+  margin-bottom: 0.25em;
 }
 
 .projectsCard {
@@ -41,4 +83,87 @@
   align-items: center;
   margin-bottom: 1em;
   padding: 0 1em;
+}
+
+.addIcon {
+  height: 0.85em;
+}
+
+.deleteIcon {
+  height: 0.95em;
+}
+
+.addProjectButton:hover {
+  background-color: var(--secondary-black);
+}
+.deleteProjectButton:hover {
+  outline: 2px solid #cc3e19;
+}
+
+.projectsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  flex-grow: 1;
+}
+.detailsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  flex-grow: 1;
+}
+
+.membersCard {
+  flex-basis: 30%;
+  padding: 1.2em 1.4em;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.detailsCard {
+  padding: 1.2em 1.4em;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+  flex-grow: 1;
+  padding-right: 15%;
+}
+
+.dataItem,
+.fullLengthdataItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  flex-grow: 1;
+}
+
+.fullLengthdataItem {
+  flex-basis: 100%;
+}
+
+.dataLabel {
+  font-size: 1.046em;
+  color: var(--secondary-black);
+}
+
+.dataValue {
+  font-size: 1.08em;
+}
+
+.utilisationCard {
+  padding: 1.2em 1.4em;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  display: flex;
+  gap: 1em;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
 }

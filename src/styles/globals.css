@@ -57,19 +57,30 @@ h2 {
   margin-bottom: 0.25em;
 }
 
-table,
-th,
 td {
-  border: 1px solid black;
+  /* border: 1px 0 0 0; */
+  border-top: 1px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0;
+  border-style: dashed;
+  /* border-top-width: 1px; */
+  border-color: var(--primary-grey);
 }
 
 th {
   font-size: 1.043em;
   font-weight: 450;
   color: var(--secondary-black);
+  padding-bottom: 0.75em;
 }
 
 td {
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
   text-align: center;
   font-size: 1.083em;
 }
+
+/* td:last-child {
+} */
