@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "home/styles/SMTable.module.css";
+import { useRouter } from "next/router";
 
 type header = {
   title: string;
@@ -13,6 +14,9 @@ type SMProps = {
   showPagination?: boolean;
   tableName: string;
   rowsPerPage?: number;
+  clickableRow?: boolean;
+  linkPrefix?: string;
+  linkKey?: string;
 };
 
 const getClassName = ({ index, key, lastIndex }: any) => {
@@ -45,12 +49,34 @@ const TableHead = (props: any) => {
 };
 
 const TableBody = (props: any) => {
-  const { tableData, headerData, tableName, startIndex } = props;
+  const {
+    tableData,
+    headerData,
+    tableName,
+    startIndex,
+    clickableRow,
+    linkPrefix,
+    linkKey,
+  } = props;
+
   const lastIndex = tableData.length - 1;
+  const router = useRouter();
+  const handleNavigation = (row: any) => {
+    if (clickableRow && linkPrefix && linkKey) {
+      router.push(`${linkPrefix}${row[linkKey]}`);
+    }
+  };
+
   return (
     <tbody>
       {tableData.map((row: any, index: number) => (
-        <tr key={tableName + index}>
+        <tr
+          key={tableName + index}
+          className={clickableRow ? styles.clickableRow : ""}
+          onClick={() => {
+            handleNavigation(row);
+          }}
+        >
           <td>{startIndex + index + 1}</td>
           {headerData.map((header: header, index: number) => {
             return (
@@ -78,6 +104,9 @@ export const SMTable = (SMProps: SMProps) => {
     showPagination,
     tableName,
     rowsPerPage = 7,
+    clickableRow = false,
+    linkPrefix,
+    linkKey,
   } = SMProps;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,6 +134,9 @@ export const SMTable = (SMProps: SMProps) => {
           headerData={headerData}
           tableName={tableName}
           startIndex={startIndex}
+          clickableRow={clickableRow}
+          linkPrefix={linkPrefix}
+          linkKey={linkKey}
         />
       </table>
       {showPagination && (

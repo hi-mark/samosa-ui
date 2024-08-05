@@ -47,3 +47,12 @@
 .paginationIcon {
   height: 0.8em;
 }
+
+.clickableRow {
+  cursor: pointer;
+  border-radius: 2em;
+}
+
+.clickableRow:hover {
+  background-color: var(--primary-grey);
+}
