@@ -2,6 +2,7 @@ import {
   PrimaryButton,
   SecondaryButton,
 } from "home/components/GlobalComponents/Buttons";
+import { ErrorMessage } from "home/components/GlobalComponents/FormComponents";
 import { TwoStepFormStepper } from "home/components/GlobalComponents/TwoStepFormStepper";
 import styles from "home/styles/SignUp.module.css";
 import { ChangeEvent, useState } from "react";
@@ -19,18 +20,6 @@ interface FormData {
   operation: operation;
 }
 
-type ErrorProps = {
-  msg: string | undefined;
-};
-
-const ErrorMessage = ({ msg }: ErrorProps) => {
-  return (
-    <div>
-      <p className={styles.error}>{msg || <> &nbsp;</>}</p>
-    </div>
-  );
-};
-
 const SignUp = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
@@ -45,14 +34,13 @@ const SignUp = () => {
   });
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
-  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
@@ -81,7 +69,6 @@ const SignUp = () => {
 
   const nextStep = (): void => {
     if (validateStep()) {
-      setCompletedSteps([...completedSteps, step]);
       setStep(step + 1);
     }
   };

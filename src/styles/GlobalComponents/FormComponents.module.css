@@ -1,0 +1,26 @@
+.error {
+  color: var(--error-red);
+  font-size: 0.84em;
+  font-weight: 450;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.1em;
+}
+
+.inputLabel {
+  font-size: 1.08em;
+  font-weight: 530;
+  margin-bottom: 0.1em;
+}
+
+.inputBox {
+  padding: 1em 1.2em;
+  border: 1px solid #d8d8d8;
+  border-radius: 0.5625em;
+  font-size: 1em;
+  width: 100%;
+}
