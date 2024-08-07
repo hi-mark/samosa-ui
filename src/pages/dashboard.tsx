@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Favicon from "home/components/GlobalComponents/Favicon";
 import styles from "home/styles/Dashboard.module.css";
 import { useState } from "react";
 
@@ -75,7 +74,6 @@ export default function Home() {
           content="Dashboard of Samosa IT, an APAD Project"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Favicon />
       </Head>
       <div className={styles.dashboardBody}>
         <div className={styles.dashboardContainer}>
