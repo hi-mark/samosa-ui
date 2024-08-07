@@ -24,12 +24,6 @@
   width: 42em;
 }
 
-.formHeading {
-  font-size: 3em;
-  font-weight: 530;
-  /* margin-bottom: 0.2em; */
-}
-
 .signupForm {
   display: flex;
   flex-direction: column;
@@ -84,70 +78,4 @@
 .radioWrapper {
   display: flex;
   gap: 0.5em;
-}
-
-.progressWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4em;
-  margin-top: 1.5em;
-}
-
-.formStep,
-.formInactiveStep {
-  display: flex;
-  gap: 1em;
-  align-items: center;
-}
-
-.formInactiveStep {
-  color: var(--secondary-black);
-}
-
-.progressCircle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2.19em;
-  width: 2.19em;
-  /* outline: 1px solid var(--secondary-black); */
-  border-radius: 5em;
-}
-
-.formInactiveStep .progressCircle {
-  outline: 1.3px solid var(--primary-grey);
-}
-
-.formStep .progressCircle {
-  background-color: var(--primary-black);
-  color: #fff;
-}
-
-.progressLabel,
-.progressInactiveLabel {
-  font-size: 1.1em;
-  font-weight: 530;
-}
-
-.progressInactiveLabel {
-  color: var(--secondary-black);
-}
-
-.separatorWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 2.19em;
-}
-
-.separator {
-  background-color: var(--secondary-black);
-  width: 1.35px;
-  min-width: 1px;
-  height: 1.5em;
-  min-height: 1.5em;
-}
-
-.checkIcon {
-  width: 45%;
 }
