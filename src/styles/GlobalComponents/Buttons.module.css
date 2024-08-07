@@ -1,0 +1,27 @@
+.primaryButton,
+.secondaryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 1em;
+  font-weight: 530;
+
+  padding: 0.7em 2em;
+  border: none;
+  border-radius: 3rem;
+
+  cursor: pointer;
+  transition: all ease-in-out 0.1s;
+}
+
+.primaryButton {
+  background-color: var(--primary-black);
+  color: #fff;
+  gap: 1em;
+}
+
+/* .secondaryButton {
+} */

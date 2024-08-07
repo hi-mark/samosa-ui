@@ -14,35 +14,39 @@
   margin-bottom: 0.2em;
 }
 
-.addProjectButton {
+.addProjectButton,
+.deleteProjectButton,
+.cancelButton,
+.saveButton {
   display: flex;
+  align-items: center;
   justify-content: center;
   align-items: center;
+
+  font-size: 1em;
+  font-weight: 530;
+
   padding: 0.7em 2em;
+  border: none;
+  border-radius: 3rem;
+
+  cursor: pointer;
+  transition: all ease-in-out 0.1s;
+}
+
+.addProjectButton {
   background-color: var(--primary-black);
   color: #fff;
-  font-size: 1em;
-  border-radius: 3rem;
-  cursor: pointer;
   gap: 1em;
   border: none;
 }
 
 .deleteProjectButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.7em 2em;
   background-color: #f9eeea;
   color: #cc3e19;
   outline: 1px solid #cc3e19;
-  font-size: 1em;
-  border-radius: 3rem;
-  cursor: pointer;
   gap: 1em;
   border: none;
-
-  transition: all 0.1s;
 }
 
 .projectsWrapper {
@@ -166,4 +170,117 @@
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.editUtilisationButton {
+  all: unset;
+  /* border: 1px solid var(--primary-grey); */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: var(--primary-grey); */
+  /* border: none; */
+  border-radius: 10em;
+  height: 2.2em;
+  width: 2.2em;
+
+  cursor: pointer;
+  margin-top: -0.2em;
+  transition: all ease-in-out 0.1s;
+}
+.editUtilisationButton:hover {
+  outline: 1px;
+  box-shadow: 0 0 0 2px var(--primary-grey);
+}
+
+.editIcon {
+  height: 0.9em;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+
+  background-color: rgba(15, 14, 14, 0.535);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  transition: all ease-in-out 1s;
+}
+
+.EditResourcesCard {
+  background-color: #fff;
+  display: flex;
+  width: 39vw;
+  padding: 2.1em;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  gap: 2em;
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.saveButton {
+  background-color: var(--primary-black);
+  color: #fff;
+}
+
+.editTable {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 1.08em;
+  font-weight: 530;
+  margin-bottom: 4em;
+}
+.editRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 1em; */
+  /* max-width: 100%; */
+}
+
+.editCell,
+.editCellLeft {
+  width: 25%;
+  min-width: 25%;
+  display: flex;
+  flex-direction: row;
+}
+
+.editCellLeft {
+  justify-content: flex-start;
+}
+.editCell {
+  justify-content: center;
+}
+.editDivider {
+  width: 75%;
+  background-color: var(--primary-grey);
+  height: 1px;
+}
+
+.editLabel {
+  font-weight: 400;
+  color: var(--secondary-black);
+  font-size: 1.04em;
 }

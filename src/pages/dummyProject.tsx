@@ -5,6 +5,8 @@ import { GetServerSideProps } from "next";
 import Favicon from "home/components/GlobalComponents/Favicon";
 import Head from "next/head";
 import { UtilisationGraph } from "home/components/GlobalComponents/UtilisationGraph";
+import { ProjectDetails } from "home/components/Projects/ProjectDetails";
+import { EditResources } from "home/components/Projects/EditResources";
 
 const headerData = [
   {
@@ -36,6 +38,8 @@ export default function Home({ props }: any) {
   // need to update
   const ProjectID = "P12";
 
+  const [showEditResources, setShowEditResources] = useState(false);
+
   return (
     <>
       <Head>
@@ -47,6 +51,11 @@ export default function Home({ props }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Favicon />
       </Head>
+      <EditResources
+        showEditResources={showEditResources}
+        setShowEditResources={setShowEditResources}
+        data={projectData}
+      />
 
       <div className={styles.projectsBody}>
         <div className={styles.projectsWrapper}>
@@ -63,26 +72,23 @@ export default function Home({ props }: any) {
           </div>
           <div className={styles.projectsContainer}>
             <div className={styles.detailsColumn}>
-              <div className={styles.detailsCard}>
-                <div className={styles.dataItem}>
-                  <p className={styles.dataLabel}>Project ID</p>
-                  <p className={styles.dataValue}>{projectData.projectId}</p>
-                </div>
-                <div className={styles.dataItem}>
-                  <p className={styles.dataLabel}>Project Name</p>
-                  <p className={styles.dataValue}>{projectData.name}</p>
-                </div>
-                <div className={styles.dataItem}>
-                  <p className={styles.dataLabel}>Date Created</p>
-                  <p className={styles.dataValue}>{projectData.dateCreated}</p>
-                </div>
-                <div className={styles.fullLengthdataItem}>
-                  <p className={styles.dataLabel}>Project Details</p>
-                  <p className={styles.dataValue}>{projectData.description}</p>
-                </div>
-              </div>
+              <ProjectDetails projectData={projectData} />
               <div className={styles.utilisationCard}>
-                <p className={styles.cardHeading}>Project Utilisation</p>
+                <div className={styles.cardHeader}>
+                  <p className={styles.cardHeading}>Project Utilisation</p>
+                  <button
+                    className={styles.editUtilisationButton}
+                    onClick={() => {
+                      setShowEditResources(true);
+                    }}
+                  >
+                    <img
+                      className={styles.editIcon}
+                      src="/icons/edit.svg"
+                      alt="Edit Utilisation"
+                    />
+                  </button>
+                </div>
                 <div className={styles.utilisationWrapper}>
                   <UtilisationGraph hw1Utilisation={24} hw2Utilisation={68} />
                 </div>
