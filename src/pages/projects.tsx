@@ -107,23 +107,24 @@ interface PageProps {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const requestBody = {
-      key: "value",
+      userId: "sid@gmail.com",
       // Add other request body properties here
     };
 
-    const res = await fetch("https://api.example.com/data", {
+    const res = await fetch("https://samosa-heroku-deployment-a98b949968eb.herokuapp.com/dashboard", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(requestBody),
     });
-
+    console.log("res", res);
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status}`);
     }
-
+    
     const data = await res.json();
+    console.log('data: ', data);
 
     return { props: { data } };
   } catch (error) {
