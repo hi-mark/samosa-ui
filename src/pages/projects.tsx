@@ -2,7 +2,6 @@ import { SMTable } from "home/components/GlobalComponents/SMTable";
 import styles from "home/styles/Projects.module.css";
 import { useState } from "react";
 import { GetServerSideProps } from "next";
-import Favicon from "home/components/GlobalComponents/Favicon";
 import Head from "next/head";
 
 const projectsHeader = [
@@ -144,7 +143,6 @@ export default function Home({ data, error }: PageProps) {
           content="View all the projects you are part of."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Favicon />
       </Head>
       <div className={styles.projectsBody}>
         <div className={styles.projectsWrapper}>

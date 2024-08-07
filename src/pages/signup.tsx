@@ -2,6 +2,8 @@ import {
   PrimaryButton,
   SecondaryButton,
 } from "home/components/GlobalComponents/Buttons";
+import { ErrorMessage } from "home/components/GlobalComponents/FormComponents";
+import { TwoStepFormStepper } from "home/components/GlobalComponents/TwoStepFormStepper";
 import styles from "home/styles/SignUp.module.css";
 import { ChangeEvent, useState } from "react";
 
@@ -18,18 +20,6 @@ interface FormData {
   operation: operation;
 }
 
-type ErrorProps = {
-  msg: string | undefined;
-};
-
-const ErrorMessage = ({ msg }: ErrorProps) => {
-  return (
-    <div>
-      <p className={styles.error}>{msg || <> &nbsp;</>}</p>
-    </div>
-  );
-};
-
 const SignUp = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
@@ -44,14 +34,13 @@ const SignUp = () => {
   });
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
-  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
@@ -80,7 +69,6 @@ const SignUp = () => {
 
   const nextStep = (): void => {
     if (validateStep()) {
-      setCompletedSteps([...completedSteps, step]);
       setStep(step + 1);
     }
   };
@@ -100,40 +88,13 @@ const SignUp = () => {
   return (
     <div className={styles.signupBody}>
       <div className={styles.signupContainer}>
-        <div className={styles.leftColumn}>
-          <div className={styles.headingWrapper}>
-            <p className={styles.formHeading}>New User</p>
-            <p className={styles.formHeading}>Sign Up</p>
-          </div>
-          <div className={styles.progressWrapper}>
-            <div className={styles.formStep}>
-              <div className={styles.progressCircle}>
-                {step === 2 ? (
-                  <img
-                    className={styles.checkIcon}
-                    src="/icons/check.svg"
-                    alt="Check"
-                  />
-                ) : (
-                  1
-                )}
-              </div>
-              <p className={styles.progressLabel}>Personal Information</p>
-            </div>
-            <div className={styles.separatorWrapper}>
-              <div
-                className={styles.separator}
-                style={{ backgroundColor: step === 1 ? "#e2e2e2" : "#000" }}
-              ></div>
-            </div>
-            <div
-              className={step === 1 ? styles.formInactiveStep : styles.formStep}
-            >
-              <div className={styles.progressCircle}>2</div>
-              <p className={styles.progressLabel}>Organisation's Information</p>
-            </div>
-          </div>
-        </div>
+        <TwoStepFormStepper
+          step={step}
+          title1="New User"
+          title2="Sign Up"
+          lalbel1="Personal Information"
+          label2="Organization's Information"
+        />
         <div className={styles.formWrapper}>
           <form className={styles.signupForm} onSubmit={handleSubmit}>
             {step === 1 && (

@@ -2,7 +2,6 @@ import { SMTable } from "home/components/GlobalComponents/SMTable";
 import styles from "home/styles/Projects.module.css";
 import { useState } from "react";
 import { GetServerSideProps } from "next";
-import Favicon from "home/components/GlobalComponents/Favicon";
 import Head from "next/head";
 import { UtilisationGraph } from "home/components/GlobalComponents/UtilisationGraph";
 import { ProjectDetails } from "home/components/Projects/ProjectDetails";
@@ -49,7 +48,6 @@ export default function Home({ props }: any) {
           content="View all the projects you are part of."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Favicon />
       </Head>
       <EditResources
         showEditResources={showEditResources}

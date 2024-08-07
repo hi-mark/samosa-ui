@@ -1,6 +1,6 @@
 import "home/styles/globals.css";
 import type { AppProps } from "next/app";
-
+import { AppContextProvider } from "home/context/AppContext";
 import localFont from "next/font/local";
 
 const NeueMontreal = localFont({
@@ -27,11 +27,13 @@ const NeueMontreal = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div
-      className={NeueMontreal.className}
-      style={{ width: "100% !important" }}
-    >
-      <Component {...pageProps} />
-    </div>
+    <AppContextProvider>
+      <div
+        className={NeueMontreal.className}
+        style={{ width: "100% !important" }}
+      >
+        <Component {...pageProps} />
+      </div>
+    </AppContextProvider>
   );
 }
