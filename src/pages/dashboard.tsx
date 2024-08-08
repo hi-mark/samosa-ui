@@ -13,7 +13,7 @@ export default function Home() {
   };
 
   const { data, error, loading } = useFetchOnPageLoad(
-    process.env.DASHBOARD,
+    process.env.NEXT_PUBLIC_DASHBOARD,
     requestBody
   );
 

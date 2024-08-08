@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { AppContext } from "home/context/AppContext";
 import useFetchOnPageLoad from "home/hooks/useFetchOnPageLoad";
+import { ErrorPage } from "home/components/GlobalComponents/ErrorPage";
 
 const projectsHeader = [
   { title: "Project Name", key: "name", leftAlign: true },
@@ -22,7 +23,7 @@ export default function Home() {
   };
 
   const { data, error, loading } = useFetchOnPageLoad(
-    process.env.ALL_PROJECTS,
+    process.env.NEXT_PUBLIC_ALL_PROJECTS,
     requestBody
   );
   return (
@@ -36,31 +37,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={styles.projectsBody}>
-        <div className={styles.projectsWrapper}>
-          <div className={styles.projectsHeader}>
-            <p className={styles.pageHeading}>Your Projects</p>
-            <button className={styles.addProjectButton}>
-              Create New Project
-              <img
-                className={styles.addIcon}
-                src="/icons/AddIcon.svg"
-                alt="Add"
+        {data && (
+          <div className={styles.projectsWrapper}>
+            <div className={styles.projectsHeader}>
+              <p className={styles.pageHeading}>Your Projects</p>
+              <button className={styles.addProjectButton}>
+                Create New Project
+                <img
+                  className={styles.addIcon}
+                  src="/icons/AddIcon.svg"
+                  alt="Add"
+                />
+              </button>
+            </div>
+            <div className={styles.projectsCard}>
+              <SMTable
+                headerData={projectsHeader}
+                tableData={data.projects}
+                showPagination
+                tableName="AllProjects"
+                rowsPerPage={6}
+                clickableRow
+                linkPrefix="/projects/"
+                linkKey="projectId"
               />
-            </button>
+            </div>
           </div>
-          <div className={styles.projectsCard}>
-            <SMTable
-              headerData={projectsHeader}
-              tableData={data}
-              showPagination
-              tableName="AllProjects"
-              rowsPerPage={6}
-              clickableRow
-              linkPrefix="/projects/"
-              linkKey="projectId"
-            />
-          </div>
-        </div>
+        )}
+        {error && <ErrorPage msg={error} />}
+        {loading && <p>Loading...</p>}
       </div>
     </>
   );
