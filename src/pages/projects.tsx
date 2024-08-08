@@ -6,6 +6,7 @@ import Head from "next/head";
 import { AppContext } from "home/context/AppContext";
 import useFetchOnPageLoad from "home/hooks/useFetchOnPageLoad";
 import { ErrorPage } from "home/components/GlobalComponents/ErrorPage";
+import { useRouter } from "next/router";
 
 const projectsHeader = [
   { title: "Project Name", key: "name", leftAlign: true },
@@ -17,9 +18,10 @@ const projectsHeader = [
 
 export default function Home() {
   const { appData, setAppData } = useContext(AppContext);
+  const router = useRouter();
 
   const requestBody = {
-    userId: appData.userId || "sid@gmail.com",
+    userid: appData.userid || "sid@gmail.com",
   };
 
   const { data, error, loading } = useFetchOnPageLoad(
@@ -41,7 +43,12 @@ export default function Home() {
           <div className={styles.projectsWrapper}>
             <div className={styles.projectsHeader}>
               <p className={styles.pageHeading}>Your Projects</p>
-              <button className={styles.addProjectButton}>
+              <button
+                className={styles.addProjectButton}
+                onClick={() => {
+                  router.push("/createProject");
+                }}
+              >
                 Create New Project
                 <img
                   className={styles.addIcon}

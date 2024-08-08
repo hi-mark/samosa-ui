@@ -1,14 +1,13 @@
 import React, { createContext, useState, ReactNode } from "react";
 
 interface Member {
-  memberName: string;
-  memberId: string;
+  name: string;
+  userid: string;
   role: string;
 }
 
 interface appData {
-  userId: string;
-  isLoggedIn: boolean;
+  userid: string;
   members: Member[];
 }
 
@@ -19,8 +18,7 @@ interface AppContextProps {
 }
 
 const defaultAppData: appData = {
-  userId: "",
-  isLoggedIn: false,
+  userid: "",
   members: [],
 };
 

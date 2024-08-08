@@ -9,7 +9,7 @@ export default function Home() {
   const { appData, setAppData } = useContext(AppContext);
 
   const requestBody = {
-    userId: appData.userId || "sid@gmail.com",
+    userid: appData.userid || "sid@gmail.com",
   };
 
   const { data, error, loading } = useFetchOnPageLoad(
@@ -21,7 +21,7 @@ export default function Home() {
     if (data) {
       setAppData((prev) => ({
         ...prev,
-        members: data.members,
+        members: data.team,
       }));
     }
   }, [data]);

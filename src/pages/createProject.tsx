@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import styles from "home/styles/CreateProject.module.css";
 import { TwoStepFormStepper } from "home/components/GlobalComponents/TwoStepFormStepper";
 import {
@@ -10,6 +10,7 @@ import {
 import PrimaryButton, {
   SecondaryButton,
 } from "home/components/GlobalComponents/Buttons";
+import { AppContext } from "home/context/AppContext";
 interface FormData {
   projectId: string;
   projectName: string;
@@ -17,17 +18,9 @@ interface FormData {
   projectTeam: string[];
 }
 
-const dummyMembers = [
-  { userid: "m1@gmail.com", name: "Munish Kohar", role: "Admin" },
-  { userid: "m2@gmail.com", name: "Jane Doe", role: "Member" },
-  { userid: "m3@gmail.com", name: "John Smith", role: "Member" },
-  { userid: "m4@gmail.com", name: "Jash Chawla", role: "Admin" },
-  { userid: "m5@gmail.com", name: "Shubash Mehar", role: "Member" },
-  { userid: "m6@gmail.com", name: "Jay Cee Agarwal", role: "Admin" },
-  { userid: "m7@gmail.com", name: "Marcus Lumbos", role: "Member" },
-];
-
 const CreateProject = () => {
+  const { appData } = useContext(AppContext);
+  console.log("appData", appData);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     projectId: "",
@@ -143,7 +136,7 @@ const CreateProject = () => {
                 <InputWrapper>
                   <InputLabel>Project Member:</InputLabel>
                   <div className={styles.memberContainer}>
-                    {dummyMembers.map((member) => (
+                    {appData.members.map((member) => (
                       <div key={member.userid} className={styles.memberWrapper}>
                         <input
                           type="checkbox"
