@@ -1,0 +1,22 @@
+.errorWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.errorHeading {
+  font-size: 2em;
+  font-weight: 530;
+  margin-bottom: -0.5em;
+}
+
+.errorMsg {
+  color: var(--secondary-black);
+  margin-bottom: 1em;
+}
+
+.errorImg {
+  width: 16em;
+}
