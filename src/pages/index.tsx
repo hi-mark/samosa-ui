@@ -13,7 +13,7 @@ export default function Home() {
 
   // redirect user if not loggedin to login page otherwise dashboard page
   useEffect(() => {
-    if (!appData.userid) {
+    if (!appData.userId) {
       router.push("/login");
     } else {
       router.push("/dashboard");

@@ -137,13 +137,13 @@ const CreateProject = () => {
                   <InputLabel>Project Member:</InputLabel>
                   <div className={styles.memberContainer}>
                     {appData.members.map((member) => (
-                      <div key={member.userid} className={styles.memberWrapper}>
+                      <div key={member.userId} className={styles.memberWrapper}>
                         <input
                           type="checkbox"
                           className={styles.memberCheckbox}
-                          value={member.userid}
+                          value={member.userId}
                           onChange={handleMemberChange}
-                          checked={formData.projectTeam.includes(member.userid)}
+                          checked={formData.projectTeam.includes(member.userId)}
                         />
                         <label className={styles.memberLabel}>
                           {member.name}

@@ -56,7 +56,7 @@ export default function Home(props: any) {
   // need to update
 
   const { data } = props;
-  const error = data.error;
+  const error = data?.error;
   const [showEditResources, setShowEditResources] = useState(false);
 
   return (

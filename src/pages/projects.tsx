@@ -21,7 +21,7 @@ export default function Home() {
   const router = useRouter();
 
   const requestBody = {
-    userid: appData.userid || "sid@gmail.com",
+    userId: appData.userId || "sid@gmail.com",
   };
 
   const { data, error, loading } = useFetchOnPageLoad(

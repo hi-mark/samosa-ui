@@ -9,7 +9,7 @@ export default function Home() {
   const { appData, setAppData } = useContext(AppContext);
 
   const requestBody = {
-    userid: appData.userid || "sid@gmail.com",
+    userId: appData.userId || "harsh2@gmail.com",
   };
 
   const { data, error, loading } = useFetchOnPageLoad(
