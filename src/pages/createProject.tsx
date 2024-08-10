@@ -160,10 +160,15 @@ const CreateProject = () => {
               Prev
             </SecondaryButton>
             {step === 1 && (
-              <PrimaryButton handleClick={nextStep}>Next</PrimaryButton>
+              <PrimaryButton id="nextCreateProject" handleClick={nextStep}>
+                Next
+              </PrimaryButton>
             )}
             {step === 2 && (
-              <PrimaryButton handleClick={handleSubmit}>
+              <PrimaryButton
+                id="createProjectButton"
+                handleClick={handleSubmit}
+              >
                 Create Project
               </PrimaryButton>
             )}

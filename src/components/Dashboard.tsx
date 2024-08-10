@@ -58,6 +58,7 @@ export const Dashboard = ({ data }: any) => {
             <div className={styles.thp}>
               <p className={styles.cardHeading}>My Projects</p>
               <PrimaryButton
+                id="viewAllProjects"
                 handleClick={() => {
                   router.push("/projects");
                 }}
