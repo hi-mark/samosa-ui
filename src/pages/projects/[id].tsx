@@ -88,7 +88,6 @@ export default function Home(props: any) {
     }
   };
 
-  console.log(data);
   return (
     <>
       <Head>

@@ -5,15 +5,6 @@ type UtilisationGraphProps = {
   hw2Utilisation: number;
 };
 
-// const calculateWidth = (hw1: number, hw2: number) => {
-//   if (!hw1) {
-//     return [0, 85];
-//   }
-//   if (!hw2) {
-//     return [85, 0];
-//   }
-// };
-
 export const UtilisationGraph = (props: UtilisationGraphProps) => {
   const { hw1Utilisation, hw2Utilisation } = props;
   return (
