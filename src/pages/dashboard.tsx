@@ -7,10 +7,8 @@ import { AppContext } from "home/context/AppContext";
 
 export default function Home() {
   const { appData, setAppData } = useContext(AppContext);
-
   const requestBody = {
-    // userId: appData.userId ,
-    userId: "siddecode@gmail.com",
+    userId: appData.userId,
   };
 
   const { data, error, loading } = useFetchOnPageLoad(

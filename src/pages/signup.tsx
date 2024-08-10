@@ -4,15 +4,23 @@ import {
 } from "home/components/GlobalComponents/Buttons";
 import { ErrorMessage } from "home/components/GlobalComponents/FormComponents";
 import { TwoStepFormStepper } from "home/components/GlobalComponents/TwoStepFormStepper";
+import { AppContext } from "home/context/AppContext";
 import styles from "home/styles/SignUp.module.css";
-import { ChangeEvent, useState } from "react";
+import { get } from "http";
+import { useRouter } from "next/router";
+import { ChangeEvent, useContext, useState } from "react";
 
 type operation = "join" | "create";
+
+const getSignUpReqBody = (formData: FormData): string => {
+  const { confirmPassword, ...rest } = formData;
+  return JSON.stringify(rest);
+};
 
 interface FormData {
   firstName: string;
   lastName: string;
-  email: string;
+  userId: string;
   password: string;
   confirmPassword: string;
   orgId: string;
@@ -21,11 +29,13 @@ interface FormData {
 }
 
 const SignUp = () => {
+  const { appData, setAppData } = useContext(AppContext);
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
-    email: "",
+    userId: "",
     password: "",
     confirmPassword: "",
     orgId: "",
@@ -41,7 +51,7 @@ const SignUp = () => {
       ...prevFormData,
       [name]: value,
     }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
+    setErrors({});
   };
 
   const validateStep = (): boolean => {
@@ -49,7 +59,7 @@ const SignUp = () => {
     if (step === 1) {
       if (!formData.firstName) newErrors.firstName = "First Name is required";
       if (!formData.lastName) newErrors.lastName = "Last Name is required";
-      if (!formData.email) newErrors.email = "Email is required";
+      if (!formData.userId) newErrors.userId = "Email is required";
       if (!formData.password) newErrors.password = "Password is required";
       if (!formData.confirmPassword)
         newErrors.confirmPassword = "Confirm Password is required";
@@ -78,10 +88,39 @@ const SignUp = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validateStep()) {
-      console.log("Form Submitted", formData);
+    if (!validateStep()) {
+      window.alert("Recheck form for errors");
+      return;
+    }
+
+    // API call to sign up the user
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SIGNUP}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: getSignUpReqBody(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setAppData((prev) => ({
+          ...prev,
+          userId: formData.userId,
+        }));
+        router.push("/dashboard");
+        // Handle successful response
+      } else {
+        // Handle error response
+        window.alert(`Login Failed: ${data.error}`);
+      }
+    } catch (error) {
+      // Handle network or other errors
+      window.alert("An error occurred. Please try again later.");
     }
   };
 
@@ -131,11 +170,11 @@ const SignUp = () => {
                     type="email"
                     className={styles.inputBox}
                     placeholder="Email"
-                    name="email"
-                    value={formData.email}
+                    name="userId"
+                    value={formData.userId}
                     onChange={handleChange}
                   />
-                  <ErrorMessage msg={errors.email} />
+                  <ErrorMessage msg={errors.userId} />
                 </div>
 
                 <div className={styles.inputWrapper}>

@@ -42,7 +42,7 @@ export const Dashboard = ({ data }: any) => {
       <div className={styles.dashboardContainer}>
         <div className={styles.teamColumn}>
           <div className={styles.teamCard}>
-            <p className={styles.cardHeading}>Team Members</p>
+            <p className={styles.cardHeading}>Org Members</p>
             <SMTable
               headerData={teamHeader}
               tableData={team}
@@ -56,7 +56,7 @@ export const Dashboard = ({ data }: any) => {
         <div className={styles.projectColumn}>
           <div className={styles.projectsCard}>
             <div className={styles.thp}>
-              <p className={styles.cardHeading}>Projects</p>
+              <p className={styles.cardHeading}>My Projects</p>
               <PrimaryButton
                 handleClick={() => {
                   router.push("/projects");
