@@ -1,4 +1,4 @@
-import styles from "home/styles/GlobalComponents/TwoStepFormStepper.module.css";
+import styles from "home/styles/GlobalComponents/TwoStepformStepper.module.css";
 type stepperProps = {
   step: number;
   title1: string;
