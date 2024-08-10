@@ -25,13 +25,17 @@ export default function Home() {
         }),
       });
       const data = await response.json();
+
+      // check for returned error
       if (data.error) {
         window.alert(data.error);
         return;
       }
+
+      // Successful Login
       setAppData((prev) => ({
         ...prev,
-        userId: data.userId, // Use the actual key returned by your API
+        userId: email,
       }));
       router.push("/dashboard"); // Redirect to the dashboard page
     } catch (error) {
