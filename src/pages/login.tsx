@@ -14,29 +14,26 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_LOGIN_URL || "",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ 
-            "userId": email,
-            "password": password }),
-        }
-      );
-        const data = await response.json();
-        if(data.error){
-           window.alert(data.error);
-            return
-        }
-        setAppData((prev) => ({
-          ...prev,
-          userId: data.userId, // Use the actual key returned by your API
-        }));
-        router.push("/dashboard"); // Redirect to the dashboard page
-   
+      const response = await fetch(process.env.NEXT_PUBLIC_LOGIN_URL || "", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: email,
+          password: password,
+        }),
+      });
+      const data = await response.json();
+      if (data.error) {
+        window.alert(data.error);
+        return;
+      }
+      setAppData((prev) => ({
+        ...prev,
+        userId: data.userId, // Use the actual key returned by your API
+      }));
+      router.push("/dashboard"); // Redirect to the dashboard page
     } catch (error) {
       console.error("An error occurred:", error);
     }

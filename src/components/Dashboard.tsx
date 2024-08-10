@@ -2,6 +2,8 @@ import styles from "home/styles/Dashboard.module.css";
 import { useState } from "react";
 import { UtilisationGraph } from "./GlobalComponents/UtilisationGraph";
 import { SMTable } from "./GlobalComponents/SMTable";
+import PrimaryButton from "./GlobalComponents/Buttons";
+import { useRouter } from "next/router";
 
 const teamHeader = [
   {
@@ -26,8 +28,17 @@ export const Dashboard = ({ data }: any) => {
   const { totalOrgHW1Utilisation, totalOrgHW2Utilisation, team, projects } =
     data;
 
+  const router = useRouter();
+
   return (
     <div className={styles.dashboardBody}>
+      {/* <PrimaryButton
+        handleClick={() => {
+          router.push("/createProject");
+        }}
+      >
+        Hello
+      </PrimaryButton> */}
       <div className={styles.dashboardContainer}>
         <div className={styles.teamColumn}>
           <div className={styles.teamCard}>
@@ -44,7 +55,16 @@ export const Dashboard = ({ data }: any) => {
         </div>
         <div className={styles.projectColumn}>
           <div className={styles.projectsCard}>
-            <p className={styles.cardHeading}>Projects</p>
+            <div className={styles.thp}>
+              <p className={styles.cardHeading}>Projects</p>
+              <PrimaryButton
+                handleClick={() => {
+                  router.push("/projects");
+                }}
+              >
+                All Projects
+              </PrimaryButton>
+            </div>
             <SMTable
               headerData={projectsHeader}
               tableData={projects}

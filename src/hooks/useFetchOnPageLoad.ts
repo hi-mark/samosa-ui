@@ -14,7 +14,7 @@ const useFetchOnPageLoad = <T>(
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  console.log("useFetchOnPageLoad", endpoint, "eee");
+  console.log("useFetchOnPageLoad", endpoint);
   console.log(JSON.stringify(process.env));
 
   useEffect(() => {

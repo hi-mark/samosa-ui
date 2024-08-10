@@ -2,12 +2,12 @@ import React, { createContext, useState, ReactNode } from "react";
 
 interface Member {
   name: string;
-  userid: string;
+  userId: string;
   role: string;
 }
 
 interface appData {
-  userid: string;
+  userId: string;
   members: Member[];
 }
 
@@ -18,7 +18,7 @@ interface AppContextProps {
 }
 
 const defaultAppData: appData = {
-  userid: "",
+  userId: "",
   members: [],
 };
 
