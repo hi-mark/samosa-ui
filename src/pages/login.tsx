@@ -102,7 +102,7 @@ export default function Home() {
           </form>
           <div className={styles.signupWrapper}>
             <p>
-              Don't you have an account?{" "}
+              Don&apos;t you have an account?
               <Link className={styles.signupLink} href="/signup">
                 Sign up
               </Link>
