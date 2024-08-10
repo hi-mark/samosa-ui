@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "home/styles/Login.module.css";
 import { AppContext } from "../context/AppContext"; // Adjust the path to your AppContext file
+import Link from "next/link";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -91,9 +92,9 @@ export default function Home() {
               />
             </div>
             <div className="forgot-password">
-              <a href="/forgot-password" className={styles.forgotPassword}>
+              <Link href="/forgotPassword" className={styles.forgotPassword}>
                 Forgot Password?
-              </a>
+              </Link>
             </div>
             <button className={styles.loginButton} type="submit">
               Log in
@@ -102,9 +103,9 @@ export default function Home() {
           <div className={styles.signupWrapper}>
             <p>
               Don't you have an account?{" "}
-              <a className={styles.signupLink} href="/signup">
+              <Link className={styles.signupLink} href="/signup">
                 Sign up
-              </a>
+              </Link>
             </p>
           </div>
         </div>
