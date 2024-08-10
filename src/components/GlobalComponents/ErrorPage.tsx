@@ -6,7 +6,10 @@ export const ErrorPage = (props: any) => {
       <img className={styles.errorImg} src="/icons/404.svg" alt="error Image" />
       <p className={styles.errorHeading}> Some-osa went wrong</p>
       <p className={styles.errorMsg}>({props?.msg})</p>
-      <PrimaryButton handleClick={() => window.history.back()}>
+      <PrimaryButton
+        id="GoBackButton"
+        handleClick={() => window.history.back()}
+      >
         Go Back
       </PrimaryButton>
     </div>

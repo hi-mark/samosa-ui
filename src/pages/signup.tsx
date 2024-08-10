@@ -262,20 +262,22 @@ const SignUp = () => {
                 )}
               </div>
             )}
-            <div className={styles.buttonContainer}>
-              <SecondaryButton disabled={step === 1} handleClick={prevStep}>
-                Prev
-              </SecondaryButton>
-              {step === 1 && (
-                <PrimaryButton handleClick={nextStep}>Next</PrimaryButton>
-              )}
-              {step === 2 && (
-                <PrimaryButton handleClick={handleSubmit}>
-                  Sign Up
-                </PrimaryButton>
-              )}
-            </div>
           </form>
+          <div className={styles.buttonContainer}>
+            <SecondaryButton disabled={step === 1} handleClick={prevStep}>
+              Prev
+            </SecondaryButton>
+            {step === 1 && (
+              <PrimaryButton id="nextCreateUser" handleClick={nextStep}>
+                Next
+              </PrimaryButton>
+            )}
+            {step === 2 && (
+              <PrimaryButton id="submitCreateUser" handleClick={handleSubmit}>
+                Sign Up
+              </PrimaryButton>
+            )}
+          </div>
         </div>
       </div>
     </div>
