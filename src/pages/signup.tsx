@@ -110,7 +110,7 @@ const SignUp = () => {
       if (response.ok) {
         setAppData((prev) => ({
           ...prev,
-          userId: data.userId,
+          userId: formData.userId,
         }));
         router.push("/dashboard");
         // Handle successful response
