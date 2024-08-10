@@ -217,18 +217,26 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-
-  transition: all ease-in-out 1s;
 }
 
 .EditResourcesCard {
   background-color: #fff;
   display: flex;
   width: 39vw;
+  min-width: 550px;
   padding: 2.1em;
   flex-direction: column;
   border-radius: var(--border-radius);
   gap: 2em;
+}
+
+.inputBox {
+  padding: 0.5em 1em;
+  border: 1px solid #d8d8d8;
+  border-radius: 0.5625em;
+  font-size: 1em;
+  width: 60%;
+  text-align: center;
 }
 
 .buttonsWrapper {

@@ -11,6 +11,7 @@ import PrimaryButton, {
   SecondaryButton,
 } from "home/components/GlobalComponents/Buttons";
 import { AppContext } from "home/context/AppContext";
+import { useRouter } from "next/router";
 interface FormData {
   projectId: string;
   projectName: string;
@@ -18,9 +19,50 @@ interface FormData {
   projectTeam: string[];
 }
 
+const checkAndFetchMembers = async ({ appData, setAppData }: any) => {
+  if (appData.members.length !== 0) return;
+
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_DASHBOARD || "", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: appData.userId,
+      }),
+    });
+
+    const data = await response.json();
+
+    setAppData((prev: any) => ({
+      ...prev,
+      members: data.members,
+    }));
+  } catch (error) {
+    window.alert(
+      "An error occurred while fetching members, you may add them later or go back to previous step and try again"
+    );
+  }
+};
+
+const getCreateProjectReqBody = (
+  userId: string,
+  formData: FormData
+): string => {
+  const body = {
+    projectId: formData.projectId,
+    name: formData.projectName,
+    description: formData.projectDescription,
+    users: formData.projectTeam,
+    userId,
+  };
+  return JSON.stringify(body);
+};
+
 const CreateProject = () => {
-  const { appData } = useContext(AppContext);
-  console.log("appData", appData);
+  const { appData, setAppData } = useContext(AppContext);
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     projectId: "",
@@ -65,16 +107,39 @@ const CreateProject = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    validateStep();
-    console.log(formData);
+    if (!validateStep()) return;
+
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_CREATE_PROJECT || "",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: getCreateProjectReqBody(appData.userId, formData),
+        }
+      );
+
+      const data = await response.json();
+
+      // check for returned error
+      if (data.error) {
+        window.alert(data.error);
+        return;
+      }
+      router.push(`projects/${formData.projectId}`);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
-  const nextStep = (): void => {
-    if (validateStep()) {
-      setStep(step + 1);
-    }
+  const nextStep = async () => {
+    if (!validateStep()) return;
+    await checkAndFetchMembers({ appData, setAppData });
+    setStep(step + 1);
   };
 
   const prevStep = (): void => {
@@ -136,20 +201,27 @@ const CreateProject = () => {
                 <InputWrapper>
                   <InputLabel>Project Member:</InputLabel>
                   <div className={styles.memberContainer}>
-                    {appData.members.map((member) => (
-                      <div key={member.userId} className={styles.memberWrapper}>
-                        <input
-                          type="checkbox"
-                          className={styles.memberCheckbox}
-                          value={member.userId}
-                          onChange={handleMemberChange}
-                          checked={formData.projectTeam.includes(member.userId)}
-                        />
-                        <label className={styles.memberLabel}>
-                          {member.name}
-                        </label>
-                      </div>
-                    ))}
+                    {appData.members
+                      .filter((member) => member.userId !== appData.userId)
+                      .map((member) => (
+                        <div
+                          key={member.userId}
+                          className={styles.memberWrapper}
+                        >
+                          <input
+                            type="checkbox"
+                            className={styles.memberCheckbox}
+                            value={member.userId}
+                            onChange={handleMemberChange}
+                            checked={formData.projectTeam.includes(
+                              member.userId
+                            )}
+                          />
+                          <label className={styles.memberLabel}>
+                            {member.name}
+                          </label>
+                        </div>
+                      ))}
                   </div>
                 </InputWrapper>
               </div>

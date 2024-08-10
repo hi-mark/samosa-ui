@@ -57,7 +57,36 @@ export default function Home(props: any) {
 
   const { data } = props;
   const error = data?.error;
+
+  const [resources, setResources] = useState({
+    hwset1: data?.hwset1 || 0,
+    hwset2: data?.hwset2 || 0,
+  });
+  const [availableResources, setAvailableResources] = useState({
+    hwset1: 0,
+    hwset2: 0,
+  });
   const [showEditResources, setShowEditResources] = useState(false);
+
+  const openEditResources = async () => {
+    // call get api to get available resources data
+
+    try {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_GET_AVAILABLE_HARDWARE || ""
+      );
+      const resourcesData = await res.json();
+
+      // Do something with the resourcesData
+      setAvailableResources({
+        hwset1: resourcesData.hwset1,
+        hwset2: resourcesData.hwset2,
+      });
+      setShowEditResources(true);
+    } catch (error) {
+      window.alert("Failed to fetch resources data, try again.");
+    }
+  };
 
   return (
     <>
@@ -72,7 +101,10 @@ export default function Home(props: any) {
       <EditResources
         showEditResources={showEditResources}
         setShowEditResources={setShowEditResources}
-        data={data}
+        data={resources}
+        setData={setResources}
+        availableResources={availableResources}
+        projectId={data?.projectId}
       />
 
       <div className={styles.projectsBody}>
@@ -98,7 +130,7 @@ export default function Home(props: any) {
                     <button
                       className={styles.editUtilisationButton}
                       onClick={() => {
-                        setShowEditResources(true);
+                        openEditResources();
                       }}
                     >
                       <img
@@ -109,7 +141,10 @@ export default function Home(props: any) {
                     </button>
                   </div>
                   <div className={styles.utilisationWrapper}>
-                    <UtilisationGraph hw1Utilisation={24} hw2Utilisation={68} />
+                    <UtilisationGraph
+                      hw1Utilisation={resources.hwset1}
+                      hw2Utilisation={resources.hwset2}
+                    />
                   </div>
                 </div>
               </div>
