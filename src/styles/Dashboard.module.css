@@ -56,8 +56,9 @@
   width: 100%;
 }
 
-/* .projectsCard {
-} */
+.projectsCard {
+  min-height: 14em;
+}
 
 .pagination {
   display: flex;

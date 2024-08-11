@@ -11,7 +11,7 @@ const links = [
     href: "/dashboard",
   },
   {
-    label: "Projects",
+    label: "My Projects",
     href: "/projects",
   },
   {

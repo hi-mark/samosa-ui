@@ -14,8 +14,12 @@ import { ChangeEvent, useContext, useState } from "react";
 type operation = "join" | "create";
 
 const getSignUpReqBody = (formData: FormData): string => {
-  const { confirmPassword, ...rest } = formData;
-  return JSON.stringify(rest);
+  const { confirmPassword, userId, orgId, ...rest } = formData;
+  return JSON.stringify({
+    userId: userId.toLowerCase(),
+    orgId: orgId.toLowerCase(),
+    ...rest,
+  });
 };
 
 interface FormData {

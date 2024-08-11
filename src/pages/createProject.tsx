@@ -53,7 +53,7 @@ const getCreateProjectReqBody = (
   formData: FormData
 ): string => {
   const body = {
-    projectId: formData.projectId,
+    projectId: formData.projectId.toLowerCase(),
     name: formData.projectName,
     description: formData.projectDescription,
     users: formData.projectTeam,
