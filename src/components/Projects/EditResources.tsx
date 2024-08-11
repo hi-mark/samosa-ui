@@ -23,8 +23,8 @@ export const EditResources = (props: any) => {
       setError("Resource cannot be negative");
       return;
     } else if (
-      hw1 > availableResources.hwset1 ||
-      hw2 > availableResources.hwset2
+      hw1 > availableResources.hwset1 + data.hwset1 ||
+      hw2 > availableResources.hwset2 + data.hwset2
     ) {
       setError("Resource cannot be greater than available resources");
       return;
