@@ -21,7 +21,7 @@ interface FormData {
   projectTeam: string[];
 }
 
-const checkAndFetchMembers = async ({ userId,appData, setAppData }: any) => {
+const checkAndFetchMembers = async ({ userId, appData, setAppData }: any) => {
   if (appData?.members?.length && appData?.members?.length !== 0) return;
 
   try {
@@ -31,7 +31,7 @@ const checkAndFetchMembers = async ({ userId,appData, setAppData }: any) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId:userId,
+        userId: userId,
       }),
     });
 
@@ -62,7 +62,6 @@ const getCreateProjectReqBody = (
   return JSON.stringify(body);
 };
 
-
 const CreateProject = () => {
   const { appData, setAppData } = useContext(AppContext);
   const router = useRouter();
@@ -74,7 +73,7 @@ const CreateProject = () => {
     projectTeam: [],
   });
 
-  const userId = appData.userId || Cookies.get("userId") || ""
+  const userId = appData.userId || Cookies.get("userId") || "";
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const handleChange = (
@@ -143,7 +142,7 @@ const CreateProject = () => {
 
   const nextStep = async () => {
     if (!validateStep()) return;
-    await checkAndFetchMembers({ userId,appData, setAppData });
+    await checkAndFetchMembers({ userId, appData, setAppData });
     setStep(step + 1);
   };
 
@@ -206,27 +205,28 @@ const CreateProject = () => {
                 <InputWrapper>
                   <InputLabel>Project Member:</InputLabel>
                   <div className={styles.memberContainer}>
-                    {appData.members && appData.members
-                      .filter((member) => member.userId !== appData.userId)
-                      .map((member) => (
-                        <div
-                          key={member.userId}
-                          className={styles.memberWrapper}
-                        >
-                          <input
-                            type="checkbox"
-                            className={styles.memberCheckbox}
-                            value={member.userId}
-                            onChange={handleMemberChange}
-                            checked={formData.projectTeam.includes(
-                              member.userId
-                            )}
-                          />
-                          <label className={styles.memberLabel}>
-                            {member.name}
-                          </label>
-                        </div>
-                      ))}
+                    {appData.members &&
+                      appData.members
+                        .filter((member) => member.userId !== userId)
+                        .map((member) => (
+                          <div
+                            key={member.userId}
+                            className={styles.memberWrapper}
+                          >
+                            <input
+                              type="checkbox"
+                              className={styles.memberCheckbox}
+                              value={member.userId}
+                              onChange={handleMemberChange}
+                              checked={formData.projectTeam.includes(
+                                member.userId
+                              )}
+                            />
+                            <label className={styles.memberLabel}>
+                              {member.name}
+                            </label>
+                          </div>
+                        ))}
                   </div>
                 </InputWrapper>
               </div>
