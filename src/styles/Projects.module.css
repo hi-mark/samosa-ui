@@ -292,3 +292,8 @@
   color: var(--secondary-black);
   font-size: 1.04em;
 }
+
+.capacity {
+  color: var(--secondary-black);
+  font-size: 1em;
+}

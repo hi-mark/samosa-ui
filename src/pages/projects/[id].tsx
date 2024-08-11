@@ -66,7 +66,9 @@ export default function Home(props: any) {
   });
   const [availableResources, setAvailableResources] = useState({
     hwset1: 0,
+    hwset1Capacity: 0,
     hwset2: 0,
+    hwset2Capacity: 0,
   });
   const [showEditResources, setShowEditResources] = useState(false);
 
@@ -83,6 +85,8 @@ export default function Home(props: any) {
       setAvailableResources({
         hwset1: resourcesData.hwset1,
         hwset2: resourcesData.hwset2,
+        hwset1Capacity: resourcesData.hwset1Capacity,
+        hwset2Capacity: resourcesData.hwset2Capacity,
       });
       setShowEditResources(true);
     } catch (error) {

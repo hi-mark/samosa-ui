@@ -41,7 +41,7 @@ export const EditResources = (props: any) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            projectId,
+            projectId: projectId.toLowerCase(),
             hwset1: parseInt(hw1),
             hwset2: parseInt(hw2),
           }),
@@ -83,7 +83,12 @@ export const EditResources = (props: any) => {
                   </div>
                 </div>
                 <div className={styles.editRow}>
-                  <div className={styles.editCellLeft}>HW Set1</div>
+                  <div className={styles.editCellLeft}>
+                    HW Set1 &nbsp;
+                    <span className={styles.capacity}>
+                      ({availableResources.hwset1Capacity})
+                    </span>
+                  </div>
                   <div className={styles.editCell}>{data.hwset1}</div>
                   <div className={styles.editCell}>
                     {availableResources.hwset1}
@@ -108,7 +113,12 @@ export const EditResources = (props: any) => {
                   <div className={styles.editDivider}></div>
                 </div>
                 <div className={styles.editRow}>
-                  <div className={styles.editCellLeft}>HW Set2</div>
+                  <div className={styles.editCellLeft}>
+                    HW Set2 &nbsp;
+                    <span className={styles.capacity}>
+                      ({availableResources.hwset2Capacity})
+                    </span>
+                  </div>
                   <div className={styles.editCell}>{data.hwset2}</div>
                   <div className={styles.editCell}>
                     {availableResources.hwset2}
