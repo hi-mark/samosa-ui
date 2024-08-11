@@ -48,7 +48,9 @@ function App({ Component, pageProps }: AppProps) {
     const userIdInCookies = Cookies.get("userId");
 
     const isLoginOrSignupPage =
-      router.pathname === "/login" || router.pathname === "/signup";
+      router.pathname === "/login" ||
+      router.pathname === "/signup" ||
+      router.pathname === "/forgotPassword";
 
     if (userIdInCookies) {
       if (isLoginOrSignupPage) {

@@ -20,7 +20,7 @@ const links = [
   },
 ];
 
-const NoNavBarPAges = ["/login", "/signup"];
+const NoNavBarPAges = ["/login", "/signup", "forgotPassword"];
 
 export const Navbar = () => {
   const path = usePathname();
