@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { createContext, useState, ReactNode } from "react";
 
 interface Member {
@@ -33,6 +34,7 @@ const AppContextProvider = ({ children }: { children: ReactNode }) => {
 
   const clearContext = () => {
     setAppData(defaultAppData);
+    Cookies.remove("userId", { path: "/" });
   };
 
   return (

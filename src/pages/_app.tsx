@@ -5,32 +5,31 @@ import localFont from "next/font/local";
 import { useRouter } from "next/router";
 import { useEffect, useContext, useState } from "react";
 import Cookies from "js-cookie";
+import { Navbar } from "home/components/NavBar";
 
 const NeueMontreal = localFont({
-    src: [
-      {
-        path: "../../public/fonts/NeueMontreal-Regular.otf",
-        weight: "450",
-      },
-      {
-        path: "../../public/fonts/NeueMontreal-Light.otf",
-        weight: "300",
-      },
-      {
-        path: "../../public/fonts/NeueMontreal-Bold.otf",
-        weight: "800",
-      },
-      {
-        path: "../../public/fonts/NeueMontreal-Medium.otf",
-        weight: "530",
-      },
-    ],
-    display: "swap",
-  });
-
+  src: [
+    {
+      path: "../../public/fonts/NeueMontreal-Regular.otf",
+      weight: "450",
+    },
+    {
+      path: "../../public/fonts/NeueMontreal-Light.otf",
+      weight: "300",
+    },
+    {
+      path: "../../public/fonts/NeueMontreal-Bold.otf",
+      weight: "800",
+    },
+    {
+      path: "../../public/fonts/NeueMontreal-Medium.otf",
+      weight: "530",
+    },
+  ],
+  display: "swap",
+});
 
 function App({ Component, pageProps }: AppProps) {
-  
   /* check if user id exist in context
     -  if yes then check if login/signup page then route to dashboard
     
@@ -40,7 +39,7 @@ function App({ Component, pageProps }: AppProps) {
 
 
   */
-  
+
   const { appData, setAppData } = useContext(AppContext);
   const router = useRouter();
 
@@ -52,14 +51,13 @@ function App({ Component, pageProps }: AppProps) {
       router.pathname === "/login" || router.pathname === "/signup";
 
     if (userIdInCookies) {
-
       if (isLoginOrSignupPage) {
         router.push("/dashboard");
       }
     } else {
-        if (!isLoginOrSignupPage) {
-            router.push("/login");
-          }
+      if (!isLoginOrSignupPage) {
+        router.push("/login");
+      }
     }
   }, [appData.userId, router.pathname, setAppData]);
 
@@ -69,6 +67,7 @@ function App({ Component, pageProps }: AppProps) {
         className={NeueMontreal.className}
         style={{ width: "100% !important" }}
       >
+        <Navbar />
         <Component {...pageProps} />
       </div>
     </AppContextProvider>

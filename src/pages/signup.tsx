@@ -113,11 +113,11 @@ const SignUp = () => {
           ...prev,
           userId: formData.userId,
         }));
-        Cookies.set('userId', formData.userId, {
+        Cookies.set("userId", formData.userId, {
           expires: 1, // 1 day expiry
           secure: true,
-          sameSite: 'strict',
-          path: '/',
+          sameSite: "strict",
+          path: "/",
         });
         router.push("/dashboard");
         // Handle successful response
@@ -177,6 +177,7 @@ const SignUp = () => {
                     type="email"
                     className={styles.inputBox}
                     placeholder="Email"
+                    required
                     name="userId"
                     value={formData.userId}
                     onChange={handleChange}

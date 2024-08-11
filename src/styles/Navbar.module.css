@@ -1,0 +1,72 @@
+.navWrapper {
+  position: fixed;
+  padding-top: 2.5vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  width: 100%;
+
+  z-index: 100;
+}
+
+.navContainer {
+  width: 80vw;
+  min-width: 900px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.middleLinks {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5em;
+}
+
+.activeLink,
+.inactiveLink {
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 0.8em 1.75em;
+  border-radius: 5em;
+  text-align: center;
+  color: var(--primary-black);
+  background-color: #fff;
+}
+
+.inactiveLink:hover,
+.activeLink:hover {
+  background-color: var(--secondary-black);
+  color: #fff;
+}
+
+.activeLink {
+  color: #fff;
+  background-color: var(--primary-black);
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5em;
+  padding: 0.9em 1.8em;
+}
+
+.logo {
+  height: 1.7em;
+}
