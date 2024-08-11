@@ -1,0 +1,110 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+
+  flex-grow: 1;
+  /* border: 1px solid var(--primary-grey); */
+}
+
+.legendItem {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.legendColor {
+  width: 0.72em;
+  min-width: 0.72em;
+  height: 0.72em;
+  min-height: 0.72em;
+  border-radius: 0.2em;
+}
+
+.legendText {
+  font-size: 1em;
+  color: var(--secondary-black);
+  font-weight: 450;
+}
+.graphWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  width: 100%;
+  /* border: 1px dashed salmon; */
+  min-height: 6em;
+}
+
+.indexWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  /* border: 1px solid green; */
+}
+
+.index {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* border: 1px dashed salmon; */
+}
+
+.barsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.22em;
+  padding-bottom: 0.2em;
+
+  height: 100%;
+
+  /* border: 1px dashed rgb(122, 91, 224); */
+}
+
+.label1 {
+  font-size: 0.8em;
+  color: var(--secondary-black);
+}
+
+.label2 {
+  font-size: 0.9em;
+  color: var(--secondary-black);
+}
+
+.bar {
+  min-width: 0.45em;
+  border-radius: 0.45em;
+}
+
+.projectWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  /* border: 2px solid red;  */
+}
+
+.graph {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-grow: 1;
+  height: 100%;
+
+  /* set bg.svg as background with width=100% */
+  /* background-image: url("/images/graphbg.svg");
+  background-size: auto 100%;
+  background-repeat: no-repeat; */
+
+  /* border: 2px dashed black; */
+}

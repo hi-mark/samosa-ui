@@ -4,6 +4,7 @@ import { UtilisationGraph } from "./GlobalComponents/UtilisationGraph";
 import { SMTable } from "./GlobalComponents/SMTable";
 import PrimaryButton from "./GlobalComponents/Buttons";
 import { useRouter } from "next/router";
+import ProjectUtilisationGraph from "./GlobalComponents/ProjectUtilisationGraph";
 
 const teamHeader = [
   {
@@ -75,14 +76,16 @@ export const Dashboard = ({ data }: any) => {
               linkPrefix="/projects/"
               linkKey="projectId"
               showPagination
+              emptyMsg="You are not added in any projects, ask your admin to add you or create new project."
             />
           </div>
           <div className={styles.inforgraphicsWrapper}>
             <div className={styles.projectUtilisationCard}>
-              <p className={styles.cardHeading}>Projects Utilisation</p>
+              <p className={styles.cardHeading}>My Projects Utilisation</p>
+              <ProjectUtilisationGraph projects={projects} />
             </div>
             <div className={styles.totalUtilisationCard}>
-              <p className={styles.cardHeading}>Total Utilisation</p>
+              <p className={styles.cardHeading}>Org Total Utilisation</p>
               <div className={styles.utilGraphWrapper}>
                 <UtilisationGraph
                   hw1Utilisation={totalOrgHW1Utilisation}

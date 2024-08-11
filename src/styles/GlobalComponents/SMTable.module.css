@@ -18,6 +18,12 @@
   border-collapse: collapse;
 }
 
+.emptyMsg {
+  /* text-align: center; */
+  font-size: 1.046em;
+  color: var(--secondary-black);
+}
+
 .pagination {
   display: flex;
   flex-direction: row;

@@ -17,6 +17,7 @@ type SMProps = {
   clickableRow?: boolean;
   linkPrefix?: string;
   linkKey?: string;
+  emptyMsg?: string;
 };
 
 const getClassName = ({ index, key, lastIndex }: any) => {
@@ -107,6 +108,7 @@ export const SMTable = (SMProps: SMProps) => {
     clickableRow = false,
     linkPrefix,
     linkKey,
+    emptyMsg = "No Data to display",
   } = SMProps;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -127,19 +129,23 @@ export const SMTable = (SMProps: SMProps) => {
 
   return (
     <div className={styles.tableWrapper}>
-      <table className={styles.SMTable}>
-        <TableHead headerData={headerData} />
-        <TableBody
-          tableData={paginatedData}
-          headerData={headerData}
-          tableName={tableName}
-          startIndex={startIndex}
-          clickableRow={clickableRow}
-          linkPrefix={linkPrefix}
-          linkKey={linkKey}
-        />
-      </table>
-      {showPagination && (
+      {tableData.length ? (
+        <table className={styles.SMTable}>
+          <TableHead headerData={headerData} />
+          <TableBody
+            tableData={paginatedData}
+            headerData={headerData}
+            tableName={tableName}
+            startIndex={startIndex}
+            clickableRow={clickableRow}
+            linkPrefix={linkPrefix}
+            linkKey={linkKey}
+          />
+        </table>
+      ) : (
+        <p className={styles.emptyMsg}>{emptyMsg}</p>
+      )}
+      {showPagination && !!tableData.length && (
         <div className={styles.pagination}>
           <button
             className={styles.paginationButton}
