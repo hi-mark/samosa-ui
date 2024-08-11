@@ -12,6 +12,8 @@ import PrimaryButton, {
 } from "home/components/GlobalComponents/Buttons";
 import { AppContext } from "home/context/AppContext";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+
 interface FormData {
   projectId: string;
   projectName: string;
@@ -19,8 +21,8 @@ interface FormData {
   projectTeam: string[];
 }
 
-const checkAndFetchMembers = async ({ appData, setAppData }: any) => {
-  if (appData.members.length !== 0) return;
+const checkAndFetchMembers = async ({ userId,appData, setAppData }: any) => {
+  if (appData?.members?.length && appData?.members?.length !== 0) return;
 
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_DASHBOARD || "", {
@@ -29,7 +31,7 @@ const checkAndFetchMembers = async ({ appData, setAppData }: any) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: appData.userId,
+        userId:userId,
       }),
     });
 
@@ -37,7 +39,7 @@ const checkAndFetchMembers = async ({ appData, setAppData }: any) => {
 
     setAppData((prev: any) => ({
       ...prev,
-      members: data.members,
+      members: data.team,
     }));
   } catch (error) {
     window.alert(
@@ -60,6 +62,7 @@ const getCreateProjectReqBody = (
   return JSON.stringify(body);
 };
 
+
 const CreateProject = () => {
   const { appData, setAppData } = useContext(AppContext);
   const router = useRouter();
@@ -70,6 +73,8 @@ const CreateProject = () => {
     projectDescription: "",
     projectTeam: [],
   });
+
+  const userId = appData.userId || Cookies.get("userId") || ""
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const handleChange = (
@@ -119,7 +124,7 @@ const CreateProject = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: getCreateProjectReqBody(appData.userId, formData),
+          body: getCreateProjectReqBody(userId, formData),
         }
       );
 
@@ -138,7 +143,7 @@ const CreateProject = () => {
 
   const nextStep = async () => {
     if (!validateStep()) return;
-    await checkAndFetchMembers({ appData, setAppData });
+    await checkAndFetchMembers({ userId,appData, setAppData });
     setStep(step + 1);
   };
 
@@ -201,7 +206,7 @@ const CreateProject = () => {
                 <InputWrapper>
                   <InputLabel>Project Member:</InputLabel>
                   <div className={styles.memberContainer}>
-                    {appData.members
+                    {appData.members && appData.members
                       .filter((member) => member.userId !== appData.userId)
                       .map((member) => (
                         <div

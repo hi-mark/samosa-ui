@@ -2,8 +2,10 @@ import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "home/styles/Login.module.css";
-import { AppContext } from "../context/AppContext"; // Adjust the path to your AppContext file
 import Link from "next/link";
+import { AppContext } from "../context/AppContext";
+import Cookies from 'js-cookie'; // Adjust the path to your AppContext file
+
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -32,11 +34,17 @@ export default function Home() {
         window.alert(data.error);
         return;
       }
+      
+      Cookies.set("userId", email, {
+        expires: 1, // 1 day expiry
+        secure: true,
+        sameSite: 'strict',
+        path: '/',
+      });
 
-      // Successful Login
       setAppData((prev) => ({
         ...prev,
-        userId: email,
+        userId: email, // Use the actual key returned by your API
       }));
       router.push("/dashboard"); // Redirect to the dashboard page
     } catch (error) {

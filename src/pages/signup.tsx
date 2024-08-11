@@ -7,6 +7,7 @@ import { TwoStepFormStepper } from "home/components/GlobalComponents/TwoStepForm
 import { AppContext } from "home/context/AppContext";
 import styles from "home/styles/SignUp.module.css";
 import { get } from "http";
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { ChangeEvent, useContext, useState } from "react";
 
@@ -112,6 +113,12 @@ const SignUp = () => {
           ...prev,
           userId: formData.userId,
         }));
+        Cookies.set('userId', formData.userId, {
+          expires: 1, // 1 day expiry
+          secure: true,
+          sameSite: 'strict',
+          path: '/',
+        });
         router.push("/dashboard");
         // Handle successful response
       } else {

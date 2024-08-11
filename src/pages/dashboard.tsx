@@ -4,11 +4,13 @@ import { useContext, useEffect, useState } from "react";
 import useFetchOnPageLoad from "home/hooks/useFetchOnPageLoad";
 import { Dashboard } from "home/components/Dashboard";
 import { AppContext } from "home/context/AppContext";
+import Cookies from "js-cookie";
 
 export default function Home() {
   const { appData, setAppData } = useContext(AppContext);
+  const userIdInCookies = Cookies.get("userId");
   const requestBody = {
-    userId: appData.userId,
+    userId: userIdInCookies ,
   };
 
   const { data, error, loading } = useFetchOnPageLoad(
