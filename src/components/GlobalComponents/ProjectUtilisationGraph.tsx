@@ -51,7 +51,11 @@ export const ProjectUtilisationGraph = (props: any) => {
         <div className={styles.index}>
           <div className={styles.indexWrapper}>
             {utilisationArray.map((utilisation: number) => {
-              return <p className={styles.label1}>{utilisation}</p>;
+              return (
+                <p key={utilisation} className={styles.label1}>
+                  {utilisation}
+                </p>
+              );
             })}
           </div>
           <div>
@@ -61,7 +65,7 @@ export const ProjectUtilisationGraph = (props: any) => {
         <div className={styles.graph}>
           {projects.map((project: projectProps) => {
             return (
-              <div className={styles.projectWrapper}>
+              <div key={project.projectId} className={styles.projectWrapper}>
                 <div className={styles.barsWrapper}>
                   <div
                     className={styles.bar}
