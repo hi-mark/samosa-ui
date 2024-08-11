@@ -9,8 +9,6 @@ import { EditResources } from "home/components/Projects/EditResources";
 import { ParsedUrlQuery } from "querystring";
 import { ErrorPage } from "home/components/GlobalComponents/ErrorPage";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const headerData = [
   {
@@ -92,10 +90,8 @@ export default function Home(props: any) {
     }
   };
 
-  const notifyDelete = () => toast.success("Project was deleted successfully!");
 
   const deleteProject = async () => {
-    // call get api to get available resources data
 
     try {
       const response = await fetch(process.env.NEXT_PUBLIC_DELETE_PROJECT_URL || "", {
@@ -118,7 +114,6 @@ export default function Home(props: any) {
 
   return (
     <>
-    <ToastContainer />
       <Head>
         <title>{data?.projectId || "Not Found"}</title>
         <meta
