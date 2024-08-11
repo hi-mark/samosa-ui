@@ -8,6 +8,7 @@ import { ProjectDetails } from "home/components/Projects/ProjectDetails";
 import { EditResources } from "home/components/Projects/EditResources";
 import { ParsedUrlQuery } from "querystring";
 import { ErrorPage } from "home/components/GlobalComponents/ErrorPage";
+import { useRouter } from "next/router";
 
 const headerData = [
   {
@@ -57,6 +58,7 @@ export default function Home(props: any) {
 
   const { data } = props;
   const error = data?.error;
+  const router = useRouter();
 
   const [resources, setResources] = useState({
     hwset1: data?.hwset1 || 0,
@@ -88,6 +90,28 @@ export default function Home(props: any) {
     }
   };
 
+
+  const deleteProject = async () => {
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_DELETE_PROJECT_URL || "", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          projectId: data?.projectId,
+        }),
+      });
+      const resp = await response.json();
+      window.alert("Successfully deleted project");
+      //notifyDelete();
+      router.push("/dashboard"); // Redirect to the dashboard page
+    } catch (error) {
+      window.alert("Failed to delete project: " + error);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -112,7 +136,10 @@ export default function Home(props: any) {
           <div className={styles.projectsWrapper}>
             <div className={styles.projectsHeader}>
               <p className={styles.pageHeading}>Project Details</p>
-              <button className={styles.deleteProjectButton}>
+              <button className={styles.deleteProjectButton} onClick={
+                () => {
+                        deleteProject();
+                      }}>
                 Delete Project
                 <img
                   className={styles.deleteIcon}

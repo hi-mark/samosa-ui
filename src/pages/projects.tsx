@@ -7,6 +7,7 @@ import { AppContext } from "home/context/AppContext";
 import useFetchOnPageLoad from "home/hooks/useFetchOnPageLoad";
 import { ErrorPage } from "home/components/GlobalComponents/ErrorPage";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 const projectsHeader = [
   { title: "Project Name", key: "name", leftAlign: true },
@@ -19,9 +20,10 @@ const projectsHeader = [
 export default function Home() {
   const { appData, setAppData } = useContext(AppContext);
   const router = useRouter();
+  const userIdInCookies = Cookies.get("userId");
 
   const requestBody = {
-    userId: appData.userId,
+    userId: userIdInCookies,
     // userId: "siddecode@gmail.com",
   };
 
