@@ -67,16 +67,21 @@ export const Dashboard = ({ data }: any) => {
         </div>
         <div className={styles.projectColumn}>
           <div className={styles.projectsCard}>
-            <div className={styles.thp}>
+            <div className={styles.projectHeader}>
               <p className={styles.cardHeading}>My Recent Projects</p>
-              <PrimaryButton
-                id="viewAllProjects"
-                handleClick={() => {
+
+              <button
+                className={styles.editUtilisationButton}
+                onClick={() => {
                   router.push("/projects");
                 }}
               >
-                All Projects
-              </PrimaryButton>
+                <img
+                  className={styles.linkIcon}
+                  src="/icons/linkIcon.svg"
+                  alt="View All Projects"
+                />
+              </button>
             </div>
             <SMTable
               headerData={projectsHeader}
