@@ -9,6 +9,22 @@ export function convertToTimeOfDay(isoDate: string): string {
   const date = new Date(isoDate);
   return format(date, "hh:mm a");
 }
+type projectProps = {
+  projectId: string;
+  hwset1: number;
+  hwset2: number;
+  dateCreated: string;
+};
+export function getMostRecentProjects(
+  projects: projectProps[]
+): projectProps[] {
+  return projects
+    .sort(
+      (a, b) =>
+        new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
+    )
+    .slice(0, 4);
+}
 
 export const spring = {
   type: "spring",

@@ -68,7 +68,7 @@
 .cardHeading {
   font-size: var(--card-heading);
   font-weight: 530;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.6em;
 }
 
 .paginationButton {

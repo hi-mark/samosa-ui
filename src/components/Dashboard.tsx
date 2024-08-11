@@ -5,6 +5,7 @@ import { SMTable } from "./GlobalComponents/SMTable";
 import PrimaryButton from "./GlobalComponents/Buttons";
 import { useRouter } from "next/router";
 import ProjectUtilisationGraph from "./GlobalComponents/ProjectUtilisationGraph";
+import { getMostRecentProjects } from "home/utils";
 
 const teamHeader = [
   {
@@ -33,6 +34,8 @@ export const Dashboard = ({ data }: any) => {
     projects,
     orgId,
   } = data;
+
+  const recentProjects = getMostRecentProjects(projects);
 
   const router = useRouter();
 
@@ -77,20 +80,20 @@ export const Dashboard = ({ data }: any) => {
             </div>
             <SMTable
               headerData={projectsHeader}
-              tableData={projects}
+              tableData={recentProjects}
               tableName="AllProjects"
               rowsPerPage={5}
               clickableRow
               linkPrefix="/projects/"
               linkKey="projectId"
-              showPagination
+              // showPagination
               emptyMsg="You are not added in any projects, ask your admin to add you or create new project."
             />
           </div>
           <div className={styles.inforgraphicsWrapper}>
             <div className={styles.projectUtilisationCard}>
               <p className={styles.cardHeading}>My Projects Utilisation</p>
-              <ProjectUtilisationGraph projects={projects} />
+              <ProjectUtilisationGraph projects={recentProjects} />
             </div>
             <div className={styles.totalUtilisationCard}>
               <p className={styles.cardHeading}>Org Total Utilisation</p>
