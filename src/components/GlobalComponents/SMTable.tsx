@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styles from "home/styles/GlobalComponents/SMTable.module.css";
 import { useRouter } from "next/router";
+import { convertToMMDDYYYY } from "home/utils";
 
 type header = {
   title: string;
   key: string;
   leftAlign?: boolean;
+  type?: string;
 };
 
 type SMProps = {
@@ -88,7 +90,9 @@ const TableBody = (props: any) => {
                   textAlign: header.leftAlign ? "left" : "center",
                 }}
               >
-                {row[header.key]}
+                {header.type === "date"
+                  ? convertToMMDDYYYY(row[header.key])
+                  : row[header.key]}
               </td>
             );
           })}

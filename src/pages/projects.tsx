@@ -14,7 +14,7 @@ const projectsHeader = [
   { title: "P Id", key: "projectId" },
   { title: "HW Set 1", key: "hwset1" },
   { title: "HW Set 2", key: "hwset2" },
-  { title: "Date Created", key: "dateCreated" },
+  { title: "Date Created", key: "dateCreated", type: "date" },
 ];
 
 export default function Home() {

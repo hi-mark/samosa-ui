@@ -57,7 +57,7 @@ export const Dashboard = ({ data }: any) => {
         <div className={styles.projectColumn}>
           <div className={styles.projectsCard}>
             <div className={styles.thp}>
-              <p className={styles.cardHeading}>My Projects</p>
+              <p className={styles.cardHeading}>My Recent Projects</p>
               <PrimaryButton
                 id="viewAllProjects"
                 handleClick={() => {
