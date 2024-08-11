@@ -32,7 +32,12 @@ export const Navbar = () => {
       {!NoNavBarPAges.includes(path) && (
         <div className={styles.navWrapper}>
           <div className={styles.navContainer}>
-            <button className={styles.logoWrapper}>
+            <button
+              className={styles.logoWrapper}
+              onClick={() => {
+                router.push("/");
+              }}
+            >
               <img
                 src="/images/LogoFull.svg"
                 alt="Samosas IT"
