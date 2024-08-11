@@ -26,8 +26,13 @@ const projectsHeader = [
 ];
 
 export const Dashboard = ({ data }: any) => {
-  const { totalOrgHW1Utilisation, totalOrgHW2Utilisation, team, projects } =
-    data;
+  const {
+    totalOrgHW1Utilisation,
+    totalOrgHW2Utilisation,
+    team,
+    projects,
+    orgId,
+  } = data;
 
   const router = useRouter();
 
@@ -52,7 +57,10 @@ export const Dashboard = ({ data }: any) => {
               showPagination
             />
           </div>
-          <div className={styles.inviteCard}>Hello</div>
+          <div className={styles.inviteCard}>
+            <p className={styles.cardHeading}>Org Invite Code</p>
+            <p>{orgId}</p>
+          </div>
         </div>
         <div className={styles.projectColumn}>
           <div className={styles.projectsCard}>
