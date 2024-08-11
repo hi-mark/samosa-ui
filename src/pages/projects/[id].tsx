@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const requestBody = {
-      projectId: id,
+      projectId: id.toLowerCase(),
     };
 
     const res = await fetch(endpoint, {
@@ -90,19 +90,20 @@ export default function Home(props: any) {
     }
   };
 
-
   const deleteProject = async () => {
-
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_DELETE_PROJECT_URL || "", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          projectId: data?.projectId,
-        }),
-      });
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_DELETE_PROJECT_URL || "",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            projectId: data?.projectId,
+          }),
+        }
+      );
       const resp = await response.json();
       window.alert("Successfully deleted project");
       //notifyDelete();
@@ -136,10 +137,12 @@ export default function Home(props: any) {
           <div className={styles.projectsWrapper}>
             <div className={styles.projectsHeader}>
               <p className={styles.pageHeading}>Project Details</p>
-              <button className={styles.deleteProjectButton} onClick={
-                () => {
-                        deleteProject();
-                      }}>
+              <button
+                className={styles.deleteProjectButton}
+                onClick={() => {
+                  deleteProject();
+                }}
+              >
                 Delete Project
                 <img
                   className={styles.deleteIcon}
