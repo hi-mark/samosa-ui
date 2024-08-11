@@ -44,7 +44,7 @@ export default function Home() {
 
       setAppData((prev) => ({
         ...prev,
-        userId: email, // Use the actual key returned by your API
+        userId: email,
       }));
       router.push("/dashboard"); // Redirect to the dashboard page
     } catch (error) {
